@@ -1,0 +1,16 @@
+[Unit]
+Description=webstore api-logout
+After=webstore-backend.service
+
+[Container]
+Image=localhost/webstore-api-logout:1.0
+ContainerName=webstore-api-logout
+Network=webstore-net.network
+PublishPort=8012:8012
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

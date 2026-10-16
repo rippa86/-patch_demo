@@ -1,0 +1,15 @@
+# Copy to inventory.ini. Shop host IPs are discovered at runtime (ansible
+# facts / site DNS). Do not invent 10.10.4.xxx last octets here.
+#
+#   cp inventory.ini.example inventory.ini
+
+[webstore_shop]
+webapp01.lab.rippa.io
+webapp02.lab.rippa.io
+
+[webstore_ops]
+second-demo.lab.rippa.io ansible_host=10.10.4.110
+
+[webstore:children]
+webstore_shop
+webstore_ops

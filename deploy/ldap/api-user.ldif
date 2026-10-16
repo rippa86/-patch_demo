@@ -1,0 +1,8 @@
+dn: uid=api,ou=Services,dc=webstore,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: api
+cn: api
+sn: api

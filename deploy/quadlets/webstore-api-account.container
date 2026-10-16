@@ -1,0 +1,16 @@
+[Unit]
+Description=webstore api-account
+After=network-online.target
+
+[Container]
+Image=localhost/webstore-api-account:1.0
+ContainerName=webstore-api-account
+Network=webstore-net.network
+PublishPort=8010:8010
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

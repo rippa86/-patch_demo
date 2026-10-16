@@ -1,0 +1,16 @@
+[Unit]
+Description=webstore api-cart
+After=webstore-backend.service
+
+[Container]
+Image=localhost/webstore-api-cart:1.0
+ContainerName=webstore-api-cart
+Network=webstore-net.network
+PublishPort=8013:8013
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rippa Lab Store</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Rippa Lab Store<span>shoppingapp.lab.rippa.io</span></div>
+    <nav>
+      <a href="/">Shop</a>
+      <a href="/account.html">Create account</a>
+    </nav>
+  </header>
+  <main>
+    <div class="grid">
+      <section class="card">
+        <h1>Three items</h1>
+        <p class="msg" id="shop-msg">Cedar mug, canvas tote, field notebook.</p>
+        <div id="products"></div>
+      </section>
+      <aside>
+        <section class="card">
+          <h2>Session</h2>
+          <form id="login-form">
+            <label for="login-user">Username</label>
+            <input id="login-user" name="username" autocomplete="username" required>
+            <label for="login-pass">Password</label>
+            <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+            <button type="submit">Log in</button>
+            <div class="msg" id="login-msg"></div>
+          </form>
+          <div id="session" hidden>
+            <p>You are signed in on this browser.</p>
+            <button type="button" id="logout" class="secondary">Log out</button>
+          </div>
+        </section>
+        <section class="card" id="cart-panel" hidden style="margin-top:16px">
+          <h2>Cart</h2>
+          <div id="cart-items"></div>
+          <button type="button" id="checkout" style="margin-top:12px">Checkout</button>
+          <div class="msg" id="cart-msg"></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Optional human test user. Password is set with ldappasswd after import
+# (see mmr.md). Do not put live passwords in this file.
+dn: uid=shopper,ou=People,dc=webstore,dc=local
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: shopper
+cn: shopper
+sn: shopper
+mail: shopper@lab.rippa.io

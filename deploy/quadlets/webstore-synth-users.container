@@ -1,0 +1,14 @@
+[Unit]
+Description=webstore synthetic users
+After=network-online.target
+
+[Container]
+Image=localhost/webstore-synth-users:1.0
+ContainerName=webstore-synth-users
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

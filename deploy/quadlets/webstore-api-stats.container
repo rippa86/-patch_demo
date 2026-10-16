@@ -1,0 +1,16 @@
+[Unit]
+Description=webstore api-stats
+After=webstore-backend.service
+
+[Container]
+Image=localhost/webstore-api-stats:1.0
+ContainerName=webstore-api-stats
+Network=webstore-net.network
+PublishPort=8014:8014
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

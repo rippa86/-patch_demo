@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account · Rippa Lab Store</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Rippa Lab Store<span>Create account</span></div>
+    <nav>
+      <a href="/">Shop</a>
+      <a href="/account.html">Create account</a>
+    </nav>
+  </header>
+  <main>
+    <section class="card" style="max-width:420px">
+      <h1>Create account</h1>
+      <p class="msg">Stored in 389-ds on the shop hosts. Passwords never go into SQL.</p>
+      <form id="account-form">
+        <label for="acc-user">Username</label>
+        <input id="acc-user" required minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]+">
+        <label for="acc-email">Email</label>
+        <input id="acc-email" type="email" required>
+        <label for="acc-pass">Password</label>
+        <input id="acc-pass" type="password" required minlength="8">
+        <button type="submit">Create account</button>
+        <div class="msg" id="account-msg"></div>
+      </form>
+    </section>
+  </main>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

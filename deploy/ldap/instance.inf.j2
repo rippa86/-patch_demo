@@ -1,0 +1,17 @@
+[general]
+config_version = 2
+full_machine_name = {{ inventory_hostname }}
+strict_host_checking = false
+selinux = true
+
+[slapd]
+instance_name = webstore
+port = 389
+secure_port = 636
+root_dn = cn=Directory Manager
+root_password = {{ ldap_manager_password }}
+self_sign_cert = true
+
+[backend-userroot]
+suffix = dc=webstore,dc=local
+sample_entries = no

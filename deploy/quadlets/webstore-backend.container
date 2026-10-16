@@ -1,0 +1,18 @@
+[Unit]
+Description=webstore backend
+After=webstore-mariadb.service
+Requires=webstore-mariadb.service
+
+[Container]
+Image=localhost/webstore-backend:1.0
+ContainerName=webstore-backend
+Network=webstore-net.network
+PublishPort=8001:8001
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target
