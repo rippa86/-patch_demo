@@ -1,0 +1,4 @@
+dn: ou=People,dc=webstore,dc=local
+changetype: modify
+add: aci
+aci: (targetattr="*")(version 3.0; acl "api can manage people"; allow (add,delete,write,read,search,compare) userdn="ldap:///uid=api,ou=Services,dc=webstore,dc=local";)

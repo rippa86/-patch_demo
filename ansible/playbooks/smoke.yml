@@ -1,0 +1,67 @@
+---
+- name: Smoke-test shop VIP and stats
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    shop_url: "http://{{ shop_vip_dns }}"
+    unique: "smoke{{ 10000 | random }}"
+  tasks:
+    - name: Frontend health through VIP
+      ansible.builtin.uri:
+        url: "{{ shop_url }}/healthz.txt"
+        return_content: true
+      register: fe
+      failed_when: fe.status != 200 or 'ok' not in fe.content
+
+    - name: Create account
+      ansible.builtin.uri:
+        url: "{{ shop_url }}/api/account"
+        method: POST
+        body_format: json
+        body:
+          username: "{{ unique }}"
+          password: "SmokePass1!"
+          email: "{{ unique }}@lab.rippa.io"
+        status_code: [200, 409]
+
+    - name: Login
+      ansible.builtin.uri:
+        url: "{{ shop_url }}/api/login"
+        method: POST
+        body_format: json
+        body:
+          username: "{{ unique }}"
+          password: "SmokePass1!"
+        status_code: 200
+      register: login
+
+    - name: List three products
+      ansible.builtin.uri:
+        url: "{{ shop_url }}/api/cart/products"
+      register: products
+      failed_when: products.json | length != 3
+
+    - name: Logout
+      ansible.builtin.uri:
+        url: "{{ shop_url }}/api/logout"
+        method: POST
+        headers:
+          Authorization: "Bearer {{ login.json.token }}"
+        status_code: 200
+
+    - name: Stats from webapp01
+      ansible.builtin.uri:
+        url: http://webapp01.lab.rippa.io:8014/api/stats/logged-in
+      register: s1
+
+    - name: Stats from webapp02
+      ansible.builtin.uri:
+        url: http://webapp02.lab.rippa.io:8014/api/stats/logged-in
+      register: s2
+
+    - name: Show logged-in counts
+      ansible.builtin.debug:
+        msg:
+          - "webapp01 count={{ s1.json.count }}"
+          - "webapp02 count={{ s2.json.count }}"

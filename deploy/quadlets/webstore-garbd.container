@@ -1,0 +1,14 @@
+[Unit]
+Description=webstore Galera arbitrator
+After=network-online.target
+
+[Container]
+Image=localhost/webstore-garbd:1.0
+ContainerName=webstore-garbd
+Network=host
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+dn: dc=webstore,dc=local
+objectClass: top
+objectClass: domain
+dc: webstore
+
+dn: ou=People,dc=webstore,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Services,dc=webstore,dc=local
+objectClass: organizationalUnit
+ou: Services

@@ -1,0 +1,15 @@
+[Unit]
+Description=webstore httpd frontend
+After=network-online.target
+
+[Container]
+Image=localhost/webstore-httpd:1.0
+ContainerName=webstore-httpd
+Network=webstore-net.network
+PublishPort=8080:8080
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

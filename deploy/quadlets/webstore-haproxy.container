@@ -1,0 +1,17 @@
+[Unit]
+Description=webstore HAProxy
+After=network-online.target webstore-httpd.service
+
+[Container]
+Image=docker.io/library/haproxy:2.8.14
+ContainerName=webstore-haproxy
+Network=host
+Volume=/opt/webstore/deploy/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+Volume=/var/run/webstore:/var/run/webstore
+AddCapability=NET_BIND_SERVICE
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

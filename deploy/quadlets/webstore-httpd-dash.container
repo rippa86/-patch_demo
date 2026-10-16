@@ -1,0 +1,14 @@
+[Unit]
+Description=webstore ops dashboard httpd
+After=network-online.target
+
+[Container]
+Image=localhost/webstore-httpd-dash:1.0
+ContainerName=webstore-httpd-dash
+PublishPort=80:8080
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

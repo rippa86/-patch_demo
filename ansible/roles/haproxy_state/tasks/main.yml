@@ -1,0 +1,11 @@
+---
+- name: Set HAProxy server state
+  ansible.builtin.shell: |
+    set -e
+    for be in {{ haproxy_backends | join(' ') }}; do
+      echo "set server ${be}/{{ haproxy_server }} state {{ haproxy_state }}" \
+        | socat stdio {{ haproxy_socket }}
+    done
+  args:
+    executable: /bin/bash
+  changed_when: true

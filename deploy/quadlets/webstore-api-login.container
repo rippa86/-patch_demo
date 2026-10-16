@@ -1,0 +1,16 @@
+[Unit]
+Description=webstore api-login
+After=webstore-backend.service
+
+[Container]
+Image=localhost/webstore-api-login:1.0
+ContainerName=webstore-api-login
+Network=webstore-net.network
+PublishPort=8011:8011
+EnvironmentFile=/etc/webstore/webstore.env
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
